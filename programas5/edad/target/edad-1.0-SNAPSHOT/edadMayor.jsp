@@ -1,32 +1,28 @@
-<%-- 
-    Document   : edadMayor
-    Created on : 23/05/2020, 15:16:29
-    Author     : usuario
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Programa 4</title>
     </head>
     <body>
-      <h1>Formulario JAVA</h1>  
-    
+      <h1>Mayor de Edad</h1>  
+       <p>Ingrese el numero:</p>
         <form>
-            <input type="number" name="uno"/>
+            <input type="number" name="num1"required /><br>
             <input type="submit" name="Enviar"/>
         </form>
         <%
-            if (request.getParameter("uno") != null) {
-                int numero1 = Integer.parseInt(request.getParameter("uno"));
+            if (request.getParameter("num1") != null) {
+                int numero1 = Integer.parseInt(request.getParameter("num1"));
      
 
-                if (numero1 > 18) {
-                    out.println("El es mayor ");
+                if (numero1 >= 18) {
+                    out.println("El usuario es mayor ");
                 }else {
-                    out.println("Es menor" );
+                    out.println("El usuario es menor" );
                 }
             }else {
                 out.println("No ingreso ningun numero");

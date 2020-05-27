@@ -1,42 +1,37 @@
-<%-- 
-    Document   : trinum
-    Created on : 23/05/2020, 10:35:45
-    Author     : usuario
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Programa 5</title>
     </head>
     <body>
-        <h1>Formulario JAVA</h1>  
-    
+        <h1>Triangulo</h1>  
+        <p>Ingrese un numero:</p>
         <form>
-            <input type="number" name="uno"/>
+            <input type="number" name="num" required/><br>
             <input type="submit" name="Enviar"/>
         </form>
-      
-         <%
-            if (request.getParameter("uno") != null) {
-                int numero1 = Integer.parseInt(request.getParameter("uno"));
+      <br>
+        <%
+            if (request.getParameter("num") != null) {
+                int numero = Integer.parseInt(request.getParameter("num"));
 
-                
-                  out.println("\n ");
-                for (int i=1; i<numero1; i++) {
-
-                    for (int k=1; k<numero1; k++) {
-                        out.println("\n ");
+                for (int i = 0; i < numero; i++) {
+                    int j = 0;
+                    while (j <= i) {
+                        out.println("*");
+                        j++;
                     }
-                    for (int t=1; t<=(numero1 * 2) - 1; t++) {
-                        out.println(" * ");
+        %>
+        <p> </p>
+        <% }
 
-                    }
-                    out.println();
-                }
-            }
+               } else {%>
+        <p>No se ha ingresado ningun numero </p>
+        <% }
         %>
     </body>
 </html>
