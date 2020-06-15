@@ -1,0 +1,69 @@
+
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+    Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+    try{
+         Class.forName("com.mysql.jdbc.Driver");
+         conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
+        stmt= conexion.prepareStatement("Select * from usuario");
+        rs=stmt.executeQuery();
+            
+   
+    }catch(Exception e){
+        out.println("Error" +e);
+    }
+%>
+         
+
+<html>
+    <head>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Index</title>
+    </head>
+    <body>
+        
+   
+  <h1 align="center"  style="font-size: 70px" ><em> Los registros en la base de datos son:</em></h1> 
+    
+    <br>
+    <div class="container" >
+        <table  class="table table-hover table-responsive-sm " align="center" style="width:55%">
+            <thread class="thread-dark">
+                <tr>
+                    <td colspan="2"><h2>Usuarios</h2></td>
+                    <td><a class="btn btn-success btn-block" href="formulario.jsp">Agregar Usuario</a></td>
+                </tr>
+
+           <tr>
+             
+             <th>#</th>
+             <th>Usuario</th>
+            <th>Contraseña</th>   
+            </tr>
+            
+       
+          <%   
+         while(rs.next()){%>
+            
+            <tr>
+           <td><%=rs.getInt("id_usuario")%></td>
+           <td><%=rs.getString("usuario")%></td>	
+           <td><%=rs.getString("password")%></td>	
+           </tr>
+       <%}%>  
+      </table>
+      
+      <br>
+      <br>
+       <br>
+
+       
+    </body>
+</html>
