@@ -4,27 +4,22 @@
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<% 
-    String value = request.getParameter("id_usuario");
-    int pass=Integer.parseInt(value);
-    
+<%
         Connection conexion = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-     
-   
+        
     try{
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDirver");
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
-        String sql = "DELETE FROM usuario WHERE usuario= '"+pass+"'";
-        stmt.executeUpdate(sql);
-      }
-    catch(Exception e){
-        System.out.print(e.getMessage());
+         Class.forName("com.mysql.jdbc.Driver");
+         conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
+        stmt= conexion.prepareStatement("DELETE FROM usuario WHERE id_usuario=?");
+       stmt.setInt(1, Integer.parseInt(request.getParameter("id_usuario")));
+  
+    }catch(Exception e){
+         System.out.println(e.getMessage());
     }
 %>
-
-
+        
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
