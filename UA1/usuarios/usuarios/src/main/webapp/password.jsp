@@ -3,26 +3,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
     
-<%
 
-   
-        Connection conexion = null;
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-
-try{
-      Class.forName("com.mysql.jdbc.Driver");
-        conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
-        stmt= conexion.prepareStatement("UPDATE usuario SET password=MD5(?) WHERE id_usuario=?");
-        stmt.setString(1, request.getParameter("password"));
-       
-
-    }catch(Exception e){
-        System.out.println(e.getMessage()); 
-    
-    }
-}
-%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,6 +18,9 @@ try{
         <br>
         <form action = "" method="POST">
             <div class="container" align="center">
+                <div class="col-lg-6 col-sm-6">      
+                         <input type="hidden" name="id_usuario" value="<%=request.getParameter("id")%>"/>
+                    </div>
                     <div class="col-lg-6 col-sm-6">      
                          <input type="password" class="form-control" placeholder="ingrese password anterior" name="password" required/>
                     </div>

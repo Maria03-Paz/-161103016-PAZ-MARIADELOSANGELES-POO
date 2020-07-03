@@ -1,5 +1,37 @@
-
+<%@page import="java.io.IOException"%>
+<%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+
+String titulo ="Agregar Usuario",usuario="usuario",action="agregar.jsp";
+int id=0;
+
+if(request.getParameter("id")!=null){
+   id=Integer.parseInt(request.getParameter("id"));
+   
+        titulo="Editar Usuario";
+        action = "editarUsuario.jsp";
+   
+        Connection conexion = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+try{
+      Class.forName("com.mysql.jdbc.Driver");
+         conexion = DriverManager.getConnection("jdbc:mysql://localhost/usuarios","root","");
+         stmt= conexion.prepareStatement("SELECT * FROM usuario WHERE id_usuario=?");
+         stmt.setInt(1, id);
+         rs=stmt.executeQuery();
+         rs.next();
+         usuario=rs.getString("usuario");
+        
+    
+    }catch(Exception e){
+        System.out.println(e.getMessage()); 
+    
+    }
+}
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,22 +42,31 @@
     <body>
         
     <br>   
-    <h1 align="center">Agrega un nuevo Usuario!</h1>
+    <h1 align="center"><%=titulo%></h1>
         <br>
-        <form action = "agregar.jsp" method="POST">
+        <form action = "<%=action%>" method="POST">
             <div class="container" align="center">
+                 <% if(id!=0){%>
                 <div class="col-lg-6 col-sm-6">
-                    <input type="text" class="form-control" placeholder="nombre" name="usuario" required/>
+                   <input type="hidden" class="form-control" value="<%=id%>" placeholder="nombre" name="id_usuario" required/>
                 </div>
+              <% } %>
+                <div class="col-lg-6 col-sm-6">
+                    <input type="text" class="form-control" value="<%=usuario%>" placeholder="nombre" name="usuario" required/>
+                </div>
+               <% if(id==0){%>
                 <div class="col-lg-6 col-sm-6">
                     <input type="password" class="form-control" placeholder="password" name="password" required/>
+                </div>
+                 <% } %>
+                  <div class="col-lg-6 col-sm-6">
+                    <input type="number" class="form-control" placeholder="telefono" name="telefono" required/>
                 </div>
                  <div class="col-lg-6 col-sm-6">
                 <input type="submit" class="btn btn-success  btn-block" value=enviar>
                  </div>
             </div>
         </form>
-        
-        
-    </body>
+   </body>
 </html>
+             

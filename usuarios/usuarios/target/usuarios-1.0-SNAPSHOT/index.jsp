@@ -18,7 +18,6 @@
         out.println("Error" +e);
     }
 %>
-         
 
 <html>
     <head>
@@ -28,42 +27,52 @@
         <title>Index</title>
     </head>
     <body>
-        
-   
-  <h1 align="center"  style="font-size: 70px" ><em> Los registros en la base de datos son:</em></h1> 
-    
+
+  <h1 align="center"  style="font-size: 50px" ><em> Los registros en la base de datos son:</em></h1> 
+ 
     <br>
     <div class="container" >
         <table  class="table table-hover table-responsive-sm " align="center" style="width:55%">
             <thread class="thread-dark">
                 <tr>
                     <td colspan="2"><h2>Usuarios</h2></td>
-                    <td><a class="btn btn-success btn-block" href="formulario.jsp">Agregar Usuario</a></td>
+                    <td><a class="btn btn-success btn-block" href="formulario.jsp">Agregar Usuario</a></td>  
+                    <td>  </td>
+                    <td>  </td>
+                     <td>  </td>
+                    <td>  </td>
+                     <td>  </td>
                 </tr>
-
-           <tr>
-             
-             <th>#</th>
-             <th>Usuario</th>
-            <th>Contraseña</th>   
-            </tr>
-            
-       
-          <%   
-         while(rs.next()){%>
-            
-            <tr>
-           <td><%=rs.getInt("id_usuario")%></td>
-           <td><%=rs.getString("usuario")%></td>	
-           <td><%=rs.getString("password")%></td>	
-           </tr>
-       <%}%>  
-      </table>
-      
-      <br>
-      <br>
-       <br>
-
-       
-    </body>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col">telefono</th>
+                    <th>  </th>
+                     <th>  </th>
+                     <th>  </th>
+                     <th>  </th>
+                </tr>
+            </thead>
+            <tbody>    
+                
+              <% while (rs.next()) {%>
+                <tr>
+                    <th scope="row"><%=rs.getInt("id_usuario")%></th>
+                    <td><%=rs.getString("usuario")%></td>	
+                    <td><%=rs.getString("password")%></td>
+                     <td><%=rs.getString("telefono")%></td>
+                    <td><a class="btn btn-info btn-block"  href="formulario.jsp?id=<%= rs.getInt("id_usuario")%>">Editar</a> </td>
+                    <td><a class="btn btn-danger btn-block" href="eliminar.jsp?id=<%= rs.getInt("id_usuario")%>">Eliminar</a></td>
+                    <td><a class="btn btn-warning btn-block" href="elimina2.jsp?id=<%= rs.getInt("id_usuario")%>">EliminarV2</a></td>
+                     <td><a class="btn btn-dark btn-block" href="password.jsp?id=<%= rs.getInt("id_usuario")%>">Password</a></td>
+                </tr>
+                <% }%>
+            </tbody>  
+        </table>
+    </div> 
+    <br>
+    <br>
+    <br>
+  </body>
 </html>

@@ -1,8 +1,6 @@
-<%@page import="java.io.IOException"%>
+
 <%@page import="java.sql.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-    
 
 <!DOCTYPE html>
 <html>
@@ -16,27 +14,29 @@
         <br>   
         <h1 align="center">Editar Password</h1>
         <br>
-        <form action = "" method="POST">
+        <form action= "editarPass.jsp" method="GET">
             <div class="container" align="center">
-                <div class="col-lg-6 col-sm-6">      
-                         <input type="hidden" name="id_usuario" value="<%=request.getParameter("id")%>"/>
-                    </div>
+                <div class="col-lg-6 col-sm-6">  
+                     <div class="col-lg-6 col-sm-6">
+                   <input type="hidden" class="form-control" value= "<%=request.getParameter("id")%>" placeholder="nombre" name="id_usuario" required/>
+                </div>
+      
                     <div class="col-lg-6 col-sm-6">      
-                         <input type="password" class="form-control" placeholder="ingrese password anterior" name="password" required/>
+                         <input type="password" class="form-control" placeholder="ingrese password anterior" name="actual" required/>
                     </div>
                   <br>
                     <div class="col-lg-6 col-sm-6">
-                         <input type="password" class="form-control" placeholder="nuevo password " name="password" required/>
+                         <input type="password" class="form-control" placeholder="nuevo password " name="nuevo" required/>
                     </div>
                   <br>
                     <div class="col-lg-6 col-sm-6">
-                         <input type="password" class="form-control" placeholder="confirme password" name="password" required/>
+                         <input type="password" class="form-control" placeholder="confirme password" name="confirma" required/>
                     </div>
                      <br>
                       <div class="col-lg-6 col-sm-6">
-                     <input type="submit" class="btn btn-info  btn-block" value=enviar>
+                     <input type="submit" class="btn btn-info  btn-block" value="enviar">
                      </div>
-                </form>
+            </form>
    </body>
 </html>
              
